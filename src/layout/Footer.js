@@ -7,7 +7,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Footer() {
   return (
     
-    <Box sx={{ backgroundColor:"#546e7a",height:"80px",marginTop:"-16px" ,display:"flex",flexDirection:"row",justifyContent:"space-between",paddingTop:"30px"}}>
+    <Box sx={{ backgroundColor:"#546e7a",height:"80px" ,display:"flex",flexDirection:"row",justifyContent:"space-between", alignItems:"center",minWidth:"200px",maxWidth:"1440px"}}>
      <Box sx={{ color:"whitesmoke" }}>
      <Typography variant="h5">   wheather Api</Typography>
      </Box>

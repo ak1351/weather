@@ -1,10 +1,11 @@
 import React from 'react'
-// import logo from '../assets/convective_clouds.png'
+import logo from '../assets/weather.jpg'
 import { useState } from 'react';
 import { Button, Typography, TextField, Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material';
 // import { WiDaySnowWind } from 'weather-icons-react';
 import ReactAnimatedWeather from 'react-animated-weather';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+// import { CurrentWeatherContent } from './CurrentWeatherContent';
 
 
 export default function HomeContent() {
@@ -16,16 +17,20 @@ export default function HomeContent() {
     animate: true
   };
 
-  const url = (latitude, longitude) => `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,rain,showers,snowfall,snow_depth,weathercode,pressure_msl,surface_pressure,cloudcover_low,visibility,windspeed_10m,winddirection_10m,windgusts_10m,soil_temperature_6cm,soil_moisture_1_3cm&forecast_days=1`
+  const url = (latitude, longitude) =>
+    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,rain,showers,snowfall,snow_depth,weathercode,pressure_msl,surface_pressure,cloudcover_low,visibility,windspeed_10m,winddirection_10m,windgusts_10m,soil_temperature_6cm,soil_moisture_1_3cm&current_weather=true&forecast_days=1`;
   const [latitude, setLatitude] = useState('')
   const [longitude, setLongitude] = useState('')
   const [weatherData, setWeatherdata] = useState("")
-
+  const [loading, setloading] = useState(false)
   const fetchcitySuggestion = async () => {
+    CurrentWeather();
+
     if (!latitude || !longitude) {
       return;
     }
     try {
+      setloading(true)
       const resp = await fetch(url(latitude, longitude));
       const data = await resp.json()
 
@@ -34,23 +39,104 @@ export default function HomeContent() {
 
       setWeatherdata(data)
       console.log("time", weatherData.hourly.time)
+      setloading(false)
     }
+
     catch (error) {
+      setloading(false)
       console.error("global error", error)
       // setWeatherdata(null)
     }
 
   };
-  // console.log("api  show ....", wheatherData.time)
+
+  // current weather code
+
+  const sunny = {
+    icon: "CLEAR_DAY",
+    color: "#ffeb3b",
+    size: 48,
+    animate: true
+  };
+
+  const partialSunny = (
+    <ReactAnimatedWeather
+      icon={cloudIcon.icon}
+      color={cloudIcon.color}
+      size={cloudIcon.size}
+      animate={cloudIcon.animate}
+    />
+  );
+
+  const fullSunny = (
+    <ReactAnimatedWeather
+      icon={sunny.icon}
+      color={sunny.color}
+      size={sunny.size}
+      animate={sunny.animate}
+    />
+  );
+
+  const [windDirection, setwindDirection] = useState(null);
+  const [temp, settemp] = useState(null);
+  const [windspeed, setWindSpeed] = useState(null);
+  const [CurrentWeatherData, setCurrentWeatherData] = useState('')
+
+
+  const CurrentWeather = () => {
+
+    fetch(
+      url(latitude, longitude)
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("API response:", data);
+
+        console.log("Current weather:", data.current_weather);
+
+        const currentTemperature = data.current_weather.temperature;
+        const currentwindirection = data.current_weather.winddirection;
+        const currentwindSpeed = data.current_weather.windspeed;
+        console.log("Current temperature:", currentTemperature);
+        setCurrentWeatherData(data)
+        setwindDirection(currentwindirection);
+        setWindSpeed(currentwindSpeed);
+        settemp(currentTemperature);
+      })
+      .catch((error) => {
+        console.error("API error:", error);
+        console.error("Weather data not available");
+      });
+  }
+//icon condition
+
+  const getWeatherIcon = (temperature) => {
+    let icon = "";
+    if (temperature >= 25) {
+      icon = partialSunny;
+    } else {
+      icon = fullSunny;
+    }
+    return icon;
+  };
+
+
+  const currentTemperature = temp ;
+  const icon = getWeatherIcon(currentTemperature);
+
 
   return (
-    <div >
-      <Box sx={{minWidth:"200px",maxWidth:"1440px"}}>
-        <div style={{ backgroundColor: "#2196f3", display: "flex", flexDirection: "column", margin: "auto" }} >
+    <Box style={{
+      backgroundImage: `url(${logo})`, backgroundSize: "cover", height: "180vh", color: "#f5f5f5",
+      minWidth: "200px", maxWidth: "1440px"
+    }} >
+
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", margin: "auto" }} >
 
           <div>
 
-            <div style={{ backgroundColor: "#2196f3", display: "flex", flexDirection: "column", gap: "30px", marginTop: "30px", marginLeft: "30px", marginBottom: "20px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "30px", marginTop: "30px", marginLeft: "30px", marginBottom: "20px" }}>
 
 
               <div style={{ display: "flex", margin: "auto" }}> <ReactAnimatedWeather
@@ -60,30 +146,66 @@ export default function HomeContent() {
                 animate={cloudIcon.animate} />
               </div>
               <Typography sx={{ marginBottom: "30px", margin: "auto" }} variant='h3'>
-                wheather Api
+                weather Api
               </Typography>
               <Typography sx={{ paddingTop: "20px", margin: "auto", paddingBottom: "20px" }}>
                 If you want to check wheather you enter the latitude and longitude number .
                 You can use it immediately!
               </Typography>
 
-              <div style={{ marginBottom:"20px",columnGap: "50px", backgroundColor: "whitesmoke", width: "470px", margin: "auto", paddingTop: "5px", paddingBottom: "5px" }}>
-                <form>
-                  <TextField sx={{ width: '150px', marginRight: "30px" }} id="outlined-basic" label="Enter the latitude" onChange={(e) => setLatitude(e.target.value)} variant="standard" required />
+              <div style={{ marginBottom: "25px", gap: "70px", backgroundColor: "whitesmoke", width: "570px", margin: "auto", paddingTop: "5px", paddingBottom: "5px", display: "flex", flexDirection: "row" }}>
 
+                <div >
+                  <TextField sx={{ width: '150px' }} id="outlined-basic" label="Enter the latitude" onChange={(e) => setLatitude(e.target.value)} variant="standard" required />
+                </div>
+                <div>
                   <TextField sx={{ width: '150px' }} id="outlined-basic" label="Enter the longitude" onChange={(e) => setLongitude(e.target.value)} variant="standard" required />
-                  <Button onClick={fetchcitySuggestion} variant="contained" sx={{ marginLeft: "5px", marginTop: "6px" }}> click me</Button>
-                </form>
-              </div>
 
+                </div>
+                <div>
+                  <Button onClick={fetchcitySuggestion} variant="contained" sx={{ marginLeft: "5px", marginTop: "6px" }}> {loading ? <>Loading..</> : <>Search</>}</Button>
+                </div>
+              </div>
             </div>
 
 
+            {CurrentWeatherData && (<div style={{ display: "flex", flexDirection: "row", gap: "50px" }} >
+              <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
+
+                <h1> Temperature:{temp} °C</h1>
+                {icon}
+              </div>
+              <div>
+
+                <h1> windspeed : {windspeed} km/h</h1>
+              </div>
+              <div>
+
+                <h1> windDirection : {windDirection} °</h1>
+              </div>
+            </div>
+
+            )
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
             {weatherData && (
-              <div style={{ paddingBottom:"20px",display: "flex",gap:"20px", flexDirection: "row", marginTop: "30px",marginBottom: "20px",paddingLeft:"20px" ,minWidth:"500px"}}>
-               
+              <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "space-evenly", flexDirection: "row", marginTop: "30px", marginBottom: "20px", paddingLeft: "20px", minWidth: "500px" }}>
+
                 <div>
-                
+
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -100,10 +222,10 @@ export default function HomeContent() {
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
-              
+
                 </div>
 
-                <div>
+                {/* <div>
                
                   <Accordion>
                     <AccordionSummary
@@ -120,10 +242,10 @@ export default function HomeContent() {
                     </AccordionDetails>
                   </Accordion>
                 
-                </div>
+                </div> */}
 
                 <div>
-               
+
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -138,12 +260,12 @@ export default function HomeContent() {
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
-                  
+
                 </div>
 
 
                 <div>
-                
+
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -158,11 +280,11 @@ export default function HomeContent() {
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
-                 
+
                 </div>
 
-                <div>
-               
+                {/* <div>
+         
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -178,10 +300,10 @@ export default function HomeContent() {
                     </AccordionDetails>
                   </Accordion>
                   
-                </div>
+                </div> */}
 
                 <div>
-             
+
                   <Accordion>
                     <AccordionSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -196,12 +318,16 @@ export default function HomeContent() {
                       </Typography>
                     </AccordionDetails>
                   </Accordion>
-                 
+
                 </div>
-              
+
               </div>
             )}
 
+
+
+
+            {/* <CurrentWeatherContent latitude={latitude}   longitude={longitude}/> */}
 
 
           </div>
@@ -217,7 +343,7 @@ export default function HomeContent() {
 
 
       </Box>
-    </div>
+    </Box>
   )
 }
 
