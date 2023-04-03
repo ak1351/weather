@@ -1,6 +1,6 @@
 
 import './App.css';
-import Home from './pages/Home';
+import Currentweather from './pages/Home';
 
 import {
   BrowserRouter,
@@ -9,6 +9,7 @@ import {
 
 } from "react-router-dom";
 import About from './pages/About';
+import     Home from './pages/Currentweather';
 
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
 
         <Route path="/Aboutus" element={<About />} />
+        <Route path="/Forcastweather" element={<Currentweather/>} />
       </Routes>
     </BrowserRouter>
 

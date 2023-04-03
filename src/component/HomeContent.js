@@ -2,10 +2,10 @@ import React from 'react'
 import logo from '../assets/weather.jpg'
 import { useState } from 'react';
 import { Button, Typography, TextField, Accordion, AccordionDetails, AccordionSummary, Box } from '@mui/material';
-// import { WiDaySnowWind } from 'weather-icons-react';
+
 import ReactAnimatedWeather from 'react-animated-weather';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-// import { CurrentWeatherContent } from './CurrentWeatherContent';
+
 
 
 export default function HomeContent() {
@@ -24,7 +24,7 @@ export default function HomeContent() {
   const [weatherData, setWeatherdata] = useState("")
   const [loading, setloading] = useState(false)
   const fetchcitySuggestion = async () => {
-    CurrentWeather();
+    // CurrentWeather();
 
     if (!latitude || !longitude) {
       return;
@@ -50,84 +50,11 @@ export default function HomeContent() {
 
   };
 
-  // current weather code
-
-  const sunny = {
-    icon: "CLEAR_DAY",
-    color: "#ffeb3b",
-    size: 48,
-    animate: true
-  };
-
-  const partialSunny = (
-    <ReactAnimatedWeather
-      icon={cloudIcon.icon}
-      color={cloudIcon.color}
-      size={cloudIcon.size}
-      animate={cloudIcon.animate}
-    />
-  );
-
-  const fullSunny = (
-    <ReactAnimatedWeather
-      icon={sunny.icon}
-      color={sunny.color}
-      size={sunny.size}
-      animate={sunny.animate}
-    />
-  );
-
-  const [windDirection, setwindDirection] = useState(null);
-  const [temp, settemp] = useState(null);
-  const [windspeed, setWindSpeed] = useState(null);
-  const [CurrentWeatherData, setCurrentWeatherData] = useState('')
-
-
-  const CurrentWeather = () => {
-
-    fetch(
-      url(latitude, longitude)
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("API response:", data);
-
-        console.log("Current weather:", data.current_weather);
-
-        const currentTemperature = data.current_weather.temperature;
-        const currentwindirection = data.current_weather.winddirection;
-        const currentwindSpeed = data.current_weather.windspeed;
-        console.log("Current temperature:", currentTemperature);
-        setCurrentWeatherData(data)
-        setwindDirection(currentwindirection);
-        setWindSpeed(currentwindSpeed);
-        settemp(currentTemperature);
-      })
-      .catch((error) => {
-        console.error("API error:", error);
-        console.error("Weather data not available");
-      });
-  }
-//icon condition
-
-  const getWeatherIcon = (temperature) => {
-    let icon = "";
-    if (temperature >= 25) {
-      icon = partialSunny;
-    } else {
-      icon = fullSunny;
-    }
-    return icon;
-  };
-
-
-  const currentTemperature = temp ;
-  const icon = getWeatherIcon(currentTemperature);
 
 
   return (
     <Box style={{
-      backgroundImage: `url(${logo})`, backgroundSize: "cover", height: "180vh", color: "#f5f5f5",
+      backgroundImage: `url(${logo})`, backgroundSize: "cover", height: "174vh", color: "#f5f5f5",
       minWidth: "200px", maxWidth: "1440px"
     }} >
 
@@ -169,40 +96,9 @@ export default function HomeContent() {
             </div>
 
 
-            {CurrentWeatherData && (<div style={{ display: "flex", flexDirection: "row", gap: "50px" }} >
-              <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
-
-                <h1> Temperature:{temp} °C</h1>
-                {icon}
-              </div>
-              <div>
-
-                <h1> windspeed : {windspeed} km/h</h1>
-              </div>
-              <div>
-
-                <h1> windDirection : {windDirection} °</h1>
-              </div>
-            </div>
-
-            )
-
-            }
-
-
-
-
-
-
-
-
-
-
-
-
 
             {weatherData && (
-              <div style={{ paddingBottom: "20px", display: "flex", justifyContent: "space-evenly", flexDirection: "row", marginTop: "30px", marginBottom: "20px", paddingLeft: "20px", minWidth: "500px" }}>
+              <div style={{ paddingBottom: "20px", display: "flex" ,gap:"100px", flexDirection: "row", marginTop: "50px", marginBottom: "20px", paddingLeft: "20px", minWidth: "500px" }}>
 
                 <div>
 

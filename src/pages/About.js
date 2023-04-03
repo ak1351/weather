@@ -6,11 +6,11 @@ import Header from '../layout/Header'
 export default function About() {
   return (
     <div>
-        <div>
-            <Header/>
-            <AboutusContent/>
-            <Footer/>
-        </div>
+      <div>
+        <Header />
+        <AboutusContent />
+        <Footer />
+      </div>
     </div>
   )
 }
