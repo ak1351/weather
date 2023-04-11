@@ -98,7 +98,7 @@ export default function HomeContent() {
 
 
             {weatherData && (
-              <div style={{ paddingBottom: "20px", display: "flex" ,gap:"100px", flexDirection: "row", marginTop: "50px", marginBottom: "20px", paddingLeft: "20px", minWidth: "500px" }}>
+              <div style={{ paddingBottom: "20px", display: "flex", gap: "100px", flexDirection: "row", marginTop: "50px", marginBottom: "20px", paddingLeft: "20px", minWidth: "500px" }}>
 
                 <div>
 

@@ -7,15 +7,15 @@ export default function Currentweather() {
 
 
 
-  
-  return (
-    <div>
-        <div>
-<Header/>
-         <CurrentWeathercontent/>
 
-    <Footer/>
-</div>
-    </div>
-  )
+    return (
+        <div>
+            <div>
+                <Header />
+                <CurrentWeathercontent />
+
+                <Footer />
+            </div>
+        </div>
+    )
 }
