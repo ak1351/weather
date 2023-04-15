@@ -18,7 +18,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/api-weather-app" element={<Home />} />
 
         <Route path="/Aboutus" element={<About />} />
         <Route path="/Forcastweather" element={<Currentweather/>} />
