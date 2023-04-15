@@ -1,10 +1,12 @@
 {
   
-  "homepage": "https://ak1351.github.io/api-weather-app",
+  
   
   "name": "api-wheather",
   
   "version": "0.1.0",
+
+  "homepage": "https://ak1351.github.io/Api-weather-app",
   
   "private": true,
   

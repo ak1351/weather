@@ -14,11 +14,10 @@ export default function CurrentWeathercontent() {
     const [CurrentWeatherData, setCurrentWeatherData] = useState('')
 
     useEffect(() => {
-        const getDataAfterTimeout = setTimeout(() => {
+        
 
             CurrentWeather();
-        }, 1100)
-        return () => clearTimeout(getDataAfterTimeout);
+    
     })
 
     const CurrentWeather = () => {
