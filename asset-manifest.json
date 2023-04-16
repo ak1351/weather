@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/wheather-app%20/static/css/main.073c9b0a.css",
-    "main.js": "/wheather-app%20/static/js/main.fe7b4077.js",
-    "static/js/787.b200e746.chunk.js": "/wheather-app%20/static/js/787.b200e746.chunk.js",
-    "static/media/weather.jpg": "/wheather-app%20/static/media/weather.62e0d8336ab0d9ca0c9b.jpg",
-    "static/media/thundar.jpg": "/wheather-app%20/static/media/thundar.7f2cfb06487c6054155c.jpg",
-    "static/media/sky.png": "/wheather-app%20/static/media/sky.58ec5e02a7fe7116e4dc.png",
-    "index.html": "/wheather-app%20/index.html",
-    "main.073c9b0a.css.map": "/wheather-app%20/static/css/main.073c9b0a.css.map",
-    "main.fe7b4077.js.map": "/wheather-app%20/static/js/main.fe7b4077.js.map",
-    "787.b200e746.chunk.js.map": "/wheather-app%20/static/js/787.b200e746.chunk.js.map"
+    "main.css": "/wheather-app/static/css/main.073c9b0a.css",
+    "main.js": "/wheather-app/static/js/main.2cc2ac42.js",
+    "static/js/787.b200e746.chunk.js": "/wheather-app/static/js/787.b200e746.chunk.js",
+    "static/media/weather.jpg": "/wheather-app/static/media/weather.62e0d8336ab0d9ca0c9b.jpg",
+    "static/media/thundar.jpg": "/wheather-app/static/media/thundar.7f2cfb06487c6054155c.jpg",
+    "static/media/sky.png": "/wheather-app/static/media/sky.58ec5e02a7fe7116e4dc.png",
+    "index.html": "/wheather-app/index.html",
+    "main.073c9b0a.css.map": "/wheather-app/static/css/main.073c9b0a.css.map",
+    "main.2cc2ac42.js.map": "/wheather-app/static/js/main.2cc2ac42.js.map",
+    "787.b200e746.chunk.js.map": "/wheather-app/static/js/787.b200e746.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.fe7b4077.js"
+    "static/js/main.2cc2ac42.js"
   ]
 }
