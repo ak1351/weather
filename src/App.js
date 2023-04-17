@@ -1,6 +1,6 @@
 
 import './App.css';
-import Currentweather from './pages/Home';
+
 
 import {
   BrowserRouter,
@@ -8,20 +8,20 @@ import {
   Route
 
 } from "react-router-dom";
-import About from './pages/About';
-import     Home from './pages/Currentweather';
-
-
+import Forcastweather from "./pages/HomeContent"
+import CurrentWeathercontent from "./pages/CurrentWeathercontent"
+import AboutusContent from "./pages/AboutusContent"
 
 
 function App() {
   return (
+    
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<CurrentWeathercontent />} />
 
-        <Route path="/Aboutus" element={<About />} />
-        <Route path="/Forcastweather" element={<Currentweather/>} />
+        <Route path="/Aboutus" element={<AboutusContent />} />
+        <Route path="/Forcastweather" element={<Forcastweather/>} />
       </Routes>
     </BrowserRouter>
 

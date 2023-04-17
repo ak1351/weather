@@ -13,7 +13,9 @@ export default function Header() {
     animate: true
   };
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", height: "80px", alignItems: "center", justifyContent: "space-between", backgroundColor: "#fafafa", minWidth: "200px", maxWidth: "1440px", color: "black" }}>
+
+ 
+    <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", backgroundColor: "secondary.main", minWidth: "200px", maxWidth: "1440px", color: "black" ,padding:"10px"}}>
 
 
       <Box sx={{ display: "flex", flexDirection: "row", gap: "40px" }} >
@@ -40,5 +42,6 @@ export default function Header() {
       </Box>
 
     </Box>
+    
   )
 }

@@ -5,6 +5,7 @@ import { Button, Typography, TextField, Accordion, AccordionDetails, AccordionSu
 
 import ReactAnimatedWeather from 'react-animated-weather';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import MainLayout from '../layout/mainLayout';
 
 
 
@@ -53,6 +54,8 @@ export default function HomeContent() {
 
 
   return (
+    <>
+    <MainLayout>
     <Box style={{
       backgroundImage: `url(${logo})`, backgroundSize: "cover", height: "174vh", color: "#f5f5f5",
       minWidth: "200px", maxWidth: "1440px"
@@ -240,6 +243,8 @@ export default function HomeContent() {
 
       </Box>
     </Box>
+    </MainLayout>
+    </>
   )
 }
 

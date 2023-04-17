@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import logo from '../assets/thundar.jpg'
 import ReactAnimatedWeather from 'react-animated-weather';
 import { Typography } from '@mui/material';
+import MainLayout from '../layout/mainLayout';
 export default function CurrentWeathercontent() {
     const url = (latitude, longitude) =>
         `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,rain,showers,snowfall,snow_depth,weathercode,pressure_msl,surface_pressure,cloudcover_low,visibility,windspeed_10m,winddirection_10m,windgusts_10m,soil_temperature_6cm,soil_moisture_1_3cm&current_weather=true&forecast_days=1`;
@@ -14,10 +15,8 @@ export default function CurrentWeathercontent() {
     const [CurrentWeatherData, setCurrentWeatherData] = useState('')
 
     useEffect(() => {
-        
-
             CurrentWeather();
-    
+
     })
 
     const CurrentWeather = () => {
@@ -121,6 +120,8 @@ export default function CurrentWeathercontent() {
 
 
     return (
+        <>
+        <MainLayout>
         <div style={{
             backgroundImage: `url(${logo})`, backgroundSize: "cover", height: "80vh", color: "#f5f5f5",
             minWidth: "200px", maxWidth: "1440px", display: "flex", alignItems: "center", justifyContent: "center"
@@ -160,5 +161,7 @@ export default function CurrentWeathercontent() {
 
 
         </div>
+        </MainLayout>
+        </>
     )
 }

@@ -7,9 +7,9 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function Footer() {
   return (
 
-    <Box sx={{ backgroundColor: "#546e7a", height: "80px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: "30px", minWidth: "200px", maxWidth: "1440px" }}>
+    <Box sx={{  backgroundColor:'secondary.main', padding:"19px", display: "flex", flexDirection: "row", justifyContent: "space-between", alignItems: "center", paddingTop: "30px", minWidth: "200px", maxWidth: "1440px" }}>
       <Box sx={{ color: "whitesmoke" }}>
-        <Typography variant="h5">   wheather Api</Typography>
+        <Typography sx={{ color: "whitesmoke" }}variant="h5">   wheather Api</Typography>
       </Box>
 
 
@@ -20,7 +20,7 @@ function Footer() {
 
       </Box>
       <Box>
-        <Typography sx={{ display: "flex", justifyContent: 'flex-end', color: "white", marginRight: "30px", }}>Follow us</Typography>
+        <Typography sx={{ display: "flex", justifyContent: 'flex-end', color: "white" }}>Follow us</Typography>
 
         <Box sx={{ display: "flex", justifyContent: 'flex-end', gap: "10px", flexDirection: "row" }} >
           <GitHubIcon />
